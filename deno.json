@@ -1,0 +1,12 @@
+{
+  "imports": {
+    "grammy": "https://deno.land/x/grammy@v1.19.2/mod.ts",
+    "oak": "https://deno.land/x/oak@v12.6.1/mod.ts"
+  },
+  "tasks": {
+    "dev": "deno run --allow-net --allow-env --allow-read --watch bot.ts",
+    "start": "deno run --allow-net --allow-env --allow-read bot.ts",
+    "webhook": "deno run --allow-env --allow-net --allow-read set_webook.ts",
+    "test": "deno test --allow-all --seed=123456 tests"
+  }
+}
