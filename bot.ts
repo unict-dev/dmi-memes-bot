@@ -14,6 +14,12 @@ meaning the envs will be set a secrets.
 const bot_token = Deno.env.get("BOT_TOKEN");
 if (!bot_token) throw new Error("BOT_TOKEN is unset");
 
+const channel_id = Deno.env.get("CHANNEL_ID");
+if (!bot_token) throw new Error("CHANNEL_ID is unset");
+
+const group_id = Deno.env.get("GROUP_ID");
+if (!bot_token) throw new Error("GROUP_ID is unset");
+
 // Export the bot so we can easily use bot webhook and polling mode.
 export const bot = new Bot(bot_token);
 
