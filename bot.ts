@@ -9,6 +9,8 @@ import {
   createConversation,
 } from "grammy_conversations";
 import { load } from "https://deno.land/std@0.208.0/dotenv/mod.ts";
+import { crypto } from "https://deno.land/std@0.208.0/crypto/mod.ts";
+import { encodeBase64 } from "https://deno.land/std@0.208.0/encoding/base64.ts";
 
 // Load enviroment variables from .env
 await load({ export: true });
@@ -36,6 +38,20 @@ const kv = await Deno.openKv();
 
 bot.use(session({
   initial: () => ({}),
+  getSessionKey: async (ctx) => {
+    const chat_id = ctx.chat?.id;
+
+    if (chat_id) {
+      const hash = await crypto.subtle.digest(
+        "SHA-384",
+        new TextEncoder().encode(chat_id.toString()),
+      );
+
+      return encodeBase64(hash);
+    } else {
+      return undefined;
+    }
+  },
   storage: new DenoKVAdapter(kv),
 }));
 bot.use(conversations());
