@@ -76,7 +76,7 @@ async function post(conversation: Conversation<BotContext>, ctx: BotContext) {
   });
 
   if (response.match === "yes") {
-    const copiedMessage = await post.copyMessage(group_id!, {
+    const _copiedMessage = await post.copyMessage(group_id!, {
       reply_markup: voteInlineKeyboard,
     });
 
