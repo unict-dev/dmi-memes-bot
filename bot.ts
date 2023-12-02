@@ -1,6 +1,7 @@
 /// <reference lib="deno.unstable" />
 
 import { Bot, Context, InlineKeyboard, session } from "grammy";
+import { DenoKVAdapter } from "grammy_storages";
 import {
   type Conversation,
   type ConversationFlavor,
@@ -31,7 +32,12 @@ type BotContext = Context & ConversationFlavor;
 // Export the bot so we can easily use bot webhook and polling mode.
 export const bot = new Bot<BotContext>(bot_token);
 
-bot.use(session({ initial: () => ({}) }));
+const kv = await Deno.openKv();
+
+bot.use(session({
+  initial: () => ({}),
+  storage: new DenoKVAdapter(kv),
+}));
 bot.use(conversations());
 
 /*
