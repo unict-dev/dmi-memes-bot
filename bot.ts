@@ -77,9 +77,7 @@ async function post(conversation: Conversation<BotContext>, ctx: BotContext) {
       ),
   );
 
-  await response.answerCallbackQuery({
-    text: "Domanda inviata con successo", // Sends a notification/toast thingy with the specified text
-  });
+  await response.answerCallbackQuery();
 
   if (response.match === "yes") {
     const _copiedMessage = await post.copyMessage(group_id!, {
