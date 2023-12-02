@@ -122,8 +122,13 @@ bot.command("chat_id", (ctx) => {
 });
 
 bot.command("user_id", (ctx) => {
-  // FIXME: null check
-  ctx.reply(ctx.from!.id.toString());
+  const user_id = ctx.from?.id;
+
+  if (user_id) {
+    ctx.reply(user_id.toString());
+  } else {
+    ctx.reply("no user_id found");
+  }
 });
 
 if (import.meta.main) {
