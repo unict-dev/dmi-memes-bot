@@ -1,6 +1,7 @@
 {
   "imports": {
     "grammy": "https://deno.land/x/grammy@v1.19.2/mod.ts",
+    "grammy_conversations": "https://deno.land/x/grammy_conversations@v1.1.2/mod.ts",
     "oak": "https://deno.land/x/oak@v12.6.1/mod.ts"
   },
   "tasks": {
